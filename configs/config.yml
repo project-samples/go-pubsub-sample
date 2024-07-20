@@ -1,0 +1,32 @@
+server:
+  name: go-subscription
+  port: 8080
+
+log:
+  level: info
+
+firestore:
+  project_id:
+  credentials:
+
+retry:
+  retry_count_name: retry
+  limit_retry: 3
+  goroutines: false
+  key: key
+
+sub:
+  subscription_id: users-sub
+  subscription:
+    max_outstanding_messages: 10000000
+    num_goroutines: 5
+  client:
+    credentials:
+
+pub:
+  topic_id: users
+  topic:
+    delay_threshold: 100
+    count_threshold: 1
+  client:
+    credentials:
