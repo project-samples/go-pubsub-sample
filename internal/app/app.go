@@ -17,8 +17,8 @@ import (
 
 type ApplicationContext struct {
 	HealthHandler *health.Handler
-	Subscribe     func(ctx context.Context, handle func(context.Context, []byte, map[string]string))
-	Handle        func(context.Context, []byte, map[string]string)
+	Subscribe     func(ctx context.Context, handle func(context.Context, []byte))
+	Handle        func(context.Context, []byte)
 }
 
 func NewApp(ctx context.Context, cfg Config) (*ApplicationContext, error) {
@@ -51,24 +51,18 @@ func NewApp(ctx context.Context, cfg Config) (*ApplicationContext, error) {
 		return nil, er3
 	}
 	errorHandler := mq.NewErrorHandler[*User](logError)
-	publisher, er4 := pubsub.NewPublisherByConfig(ctx, *cfg.Pub)
-	if er4 != nil {
-		log.Error(ctx, "Cannot new a new publisher. Error: "+er3.Error())
-		return nil, er4
-	}
 	writer := w.NewWriter[*User](client, "user")
-	handler := mq.NewRetryHandlerByConfig[User](cfg.Retry, writer.Write, validator.Validate, errorHandler.RejectWithMap, errorHandler.HandleErrorWithMap, publisher.Publish, logError, logInfo)
+	handler := mq.NewHandlerByConfig[User](cfg.Handler, writer.Write, validator.Validate, errorHandler.Reject, errorHandler.HandleError, logError, logInfo)
 	firestoreChecker, er5 := fh.NewHealthChecker(ctx, []byte(cfg.Firestore.Credentials), cfg.Firestore.ProjectId)
 	if er5 != nil {
 		return nil, er5
 	}
 	subscriberChecker := pubsub.NewSubHealthChecker("pubsub_subscriber", subscriber.Client, cfg.Sub.SubscriptionId)
-	publisherChecker := pubsub.NewPubHealthChecker("pubsub_publisher", publisher.Client, cfg.Pub.TopicId)
-	healthHandler := health.NewHandler(firestoreChecker, subscriberChecker, publisherChecker)
+	healthHandler := health.NewHandler(firestoreChecker, subscriberChecker)
 
 	return &ApplicationContext{
 		HealthHandler: healthHandler,
-		Subscribe:     subscriber.Subscribe,
+		Subscribe:     subscriber.SubscribeData,
 		Handle:        handler.Handle,
 	}, nil
 }

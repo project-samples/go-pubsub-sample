@@ -12,11 +12,13 @@ firestore:
   project_id:
   credentials:
 
-retry:
-  retry_count_name: retry
-  limit_retry: 3
-  goroutines: false
+handler:
   key: key
+  goroutines: true
+  retry:
+    1: 5
+    2: 7
+    3: 9
 
 sub:
   subscription_id: users-sub

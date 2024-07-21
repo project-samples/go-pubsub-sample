@@ -7,7 +7,7 @@ require (
 	github.com/core-go/config v1.0.1
 	github.com/core-go/firestore v1.1.0
 	github.com/core-go/health v1.0.1
-	github.com/core-go/mq v0.6.10
+	github.com/core-go/mq v0.6.11
 	github.com/core-go/pubsub v1.0.0
 	google.golang.org/api v0.171.0
 )

@@ -11,7 +11,7 @@ type Config struct {
 	Server    server.ServerConf       `mapstructure:"server"`
 	Log       log.Config              `mapstructure:"log"`
 	Firestore FirestoreConfig         `mapstructure:"firestore"`
-	Retry     mq.RetryHandlerConfig   `mapstructure:"retry"`
+	Handler   mq.HandlerConfig        `mapstructure:"handler"`
 	Sub       pubsub.SubscriberConfig `mapstructure:"sub"`
 	Pub       *pubsub.PublisherConfig `mapstructure:"pub"`
 }
