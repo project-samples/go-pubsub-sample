@@ -22,5 +22,5 @@ func main() {
 	}
 
 	go server.Serve(cfg.Server, app.HealthHandler.Check)
-	app.Receive(ctx, app.Handle)
+	app.Subscribe(ctx, app.Handle)
 }

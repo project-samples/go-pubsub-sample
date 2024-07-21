@@ -1,9 +1,12 @@
 server:
-  name: go-subscription
+  name: go-pubsub-sample
   port: 8080
 
 log:
   level: info
+  map:
+    time: "@timestamp"
+    msg: message
 
 firestore:
   project_id:
