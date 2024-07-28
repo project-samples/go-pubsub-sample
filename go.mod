@@ -6,8 +6,8 @@ require (
 	firebase.google.com/go v3.13.0+incompatible
 	github.com/core-go/config v1.0.1
 	github.com/core-go/firestore v1.1.0
-	github.com/core-go/health v1.2.0
-	github.com/core-go/mq v0.7.0
+	github.com/core-go/health v1.0.3
+	github.com/core-go/mq v1.2.0
 	github.com/core-go/pubsub v1.0.0
 	google.golang.org/api v0.171.0
 )
@@ -23,7 +23,7 @@ require (
 	cloud.google.com/go/storage v1.38.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
-	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.4 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect

@@ -11,4 +11,4 @@ The sample about rabbit-mq, which use these libraries:
 
 ### Similar libraries for nodejs
 We also provide these libraries to support nodejs:
-- [pubsub](https://github.com/core-ts/pubsub), combine with [mq-one](https://www.npmjs.com/package/mq-one) for nodejs. Example is at [pubsub-sample](https://github.com/typescript-tutorial/pubsub-sample)
+- [google-pubsub](https://www.npmjs.com/package/google-pubsub), to wrap and simplify [@google-cloud/pubsub](https://www.npmjs.com/package/@google-cloud/pubsub), combine with [mq-one](https://www.npmjs.com/package/mq-one) for nodejs. Example is at [pubsub-sample](https://github.com/typescript-tutorial/pubsub-sample)
